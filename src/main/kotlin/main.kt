@@ -1,2 +1,2 @@
-fun main(args: Array<String>) { hoi
+fun main(args: Array<String>) {
 }
