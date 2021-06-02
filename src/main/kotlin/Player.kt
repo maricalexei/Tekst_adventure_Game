@@ -1,6 +1,7 @@
 import kotlin.io.println as println
 
-class Player(val name: String, var hitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) {
+class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
+    Characters (name, hitpoints){
     var weapon = Weapons("Fists", damageInflicted = 1,)
 
     fun show() {
@@ -21,17 +22,8 @@ class Player(val name: String, var hitpoints: Int = 10, var level: Int = 1, var 
             weapon damage: ${weapon.damageInflicted}
             """
     }
-    open fun takeDamage(damage: Int){
-        val remainingHitpoints = hitpoints - damage
-        if (remainingHitpoints > 0){
-            hitpoints = remainingHitpoints
-            println("$name took $damage points of damage and has $hitpoints hitpoints left.")
-        } else {
-            if (hitpoints > 0) {
-                println("$name is dead")
-            } else {
-                println("$name has $remainingHitpoints left.")
-            }
-        }
+
+    override fun takeDamage(damage: Int) {
+        super.takeDamage(damage)
     }
 }

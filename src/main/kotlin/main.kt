@@ -50,6 +50,8 @@ fun main(args: Array<String>) {
 
     val radRoach = Radroach("Radroach", 1)
 
+    player.takeDamage(1)
+
 
     println(player)
 
