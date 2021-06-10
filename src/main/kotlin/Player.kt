@@ -2,7 +2,7 @@ import kotlin.io.println as println
 
 class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
     Characters (name, hitpoints){
-    var weapon = Weapons("Fists", damageInflicted = 1,)
+    var weapon = Weapons("Fists", 1, 2)
 
     fun show() {
         if (hitpoints < 0) {
@@ -10,6 +10,7 @@ class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiatio
         } else {
             println("$name is alive")
         }
+
     }
 
     override fun toString(): String {
@@ -19,11 +20,11 @@ class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiatio
             level: $level
             Rads: $radiation
             weapon: ${weapon.name}
-            weapon damage: ${weapon.damageInflicted}
+            Min-Damage: ${weapon.minDamage}
+            Max-Damage: ${weapon.maxDamage}
             """
     }
 
-    override fun takeDamage(damage: Int) {
-        super.takeDamage(damage)
-    }
+
+
 }

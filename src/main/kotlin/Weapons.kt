@@ -1,5 +1,5 @@
-class Weapons(val name: String, var damageInflicted: Int,) {
-    override fun toString(): String {
-        return "$name inflicted $damageInflicted damage!"
-    }
+class Weapons(val name: String, var minDamage: Int, var maxDamage: Int) {
+
+    open val damageInflicted = (minDamage..maxDamage).random()
+
 }

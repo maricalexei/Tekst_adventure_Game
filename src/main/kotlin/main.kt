@@ -1,35 +1,47 @@
 fun main(args: Array<String>) {
+
+
+
     println("Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
     println("")
+    Thread.sleep(2000)
     println("In the year 2077 the world is split into two factions who are at war with one another.")
     println("")
+    Thread.sleep(3000)
     println("We have the W.E.S.T which is comprised of the Old world contents:\n" +
             "Europe, North and South America and Oceania.")
     println("")
+    Thread.sleep(3000)
     println("We have the E.A.S.T. which is comprised of the Old world contents:\n" +
             "U.S.S.R., Turkey and Asia")
     println("")
+    Thread.sleep(4000)
     println("The great war was started with the Old World country china declaring war against Europe,\n" +
             "when this happened China allied with all of the countries in Asia,\n" +
             "the Soviet Union and turkey and together they formed the E.A.S.T.")
     println("")
+    Thread.sleep(5000)
     println("When China declared war against Europe,\n" +
             "Europe sought help from America and Oceania and they together formed the W.E.S.T.")
     println("")
+    Thread.sleep(3000)
     println("Everyone was already prepared for the war and Vaults were build in preparation of the war.\n" +
             "As much of the civilian forces were commanded to take shelter in these vaults\n" +
             "to protect them from the nuclear war.")
     println("")
+    Thread.sleep(4000)
     println("The world that we knew was destroyed and became a wasteland,\n" +
             "the only survivors had to make do with wat was left.\n" +
             "The vaults that were build pre war almost never opened,\n" +
             "and had no contact with the outside world. ")
     println("")
+    Thread.sleep(5000)
     println("You are one of those people,\n" +
             "You are born in a vault,\n" +
             "You are expected to live in the vault\n" +
             "and die in the vault.")
 
+    Thread.sleep(6000)
     println("------------------")
     println("Please Enter your name")
 
@@ -42,17 +54,77 @@ fun main(args: Array<String>) {
         username = readLine()
     }
 
+    player.show()
+
     println("You are $username\n" +
             "You wake up in the vault on what seems like a normal day\n" +
             "")
 
     println("You spot a Radroach in your room!")
+    Thread.sleep(1000)
+    val radRoach = Radroach("Radroach", 5)
+    println(radRoach)
+    var choice : String = ""
 
-    val radRoach = Radroach("Radroach", 1)
+    while(radRoach.hitpoints > 1) {
+        println("What do you want to do?")
+        Thread.sleep(500)
+        println("Press 1 to attack")
+        Thread.sleep(500)
+        println("Press 2 to try to escape")
 
-    player.takeDamage(1)
+        choice = readLine().toString()
 
+        if (radRoach.hitpoints > 0) {
+            radRoach.attack(player, 0, 1)
+        }
 
+        when (choice) {
+            "1" -> player.attack(radRoach, player.weapon.minDamage, player.weapon.maxDamage)
+            "2" -> println("You fail to get away")
+            else -> {
+                println("No valid input detected")
+            }
+        }
+
+    }
+    println("You find a Baseball bat and decide to take it with you")
+
+    val baseBallBat = Weapons ("BaseBall bat", 0, 10)
+
+    player.weapon = baseBallBat
     println(player)
 
+    Thread.sleep(1000)
+    println("")
+    println("You hear some people talking in the commonroom,\n" +
+            "and you decide to talk over to see whats going on.\n")
+    Thread.sleep(1000)
+    println("")
+    println("When you arrive in the commonroom you are immediately taken to the front,\n" +
+            "it seems the overseer of the vault has something to ask of you.")
+    println("")
+    println("Overseer:")
+    println("* We need your help $username, it seems our vault is in danger, *\n" +
+            "* the waterpurifier is in need of maintenance and we require a waterpurifier chip.*")
+    Thread.sleep(500)
+    println("")
+    println("* The problem is that we dont have anything to repair it with in the vault, *\n" +
+            "* we need someone to get out into the wasteland and find a waterchip for us before its too late. *")
+    Thread.sleep(1000)
+    println("")
+    println("* I'm asking you to go out into the wasteland and find us that waterchip, \n *" +
+            "* With that chip our vault *")
+
+    val levelChoice : String = ""
+
+    while (levelChoice != "0") {
+
+
+        when (levelChoice) {
+            "1" -> Level2.kt
+            "2" -> Level3
+        }
+    }
 }
+
