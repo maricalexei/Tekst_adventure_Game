@@ -4,7 +4,7 @@ class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var r
     Characters (name, maxHitpoints){
     var weapon = Weapons("Fists", 1, 2)
 
-    var currentHitpoints = maxHitpoints
+    private var currentHitpoints = maxHitpoints
 
 
     fun heal(healthAmount : Int){

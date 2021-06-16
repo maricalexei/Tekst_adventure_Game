@@ -1,18 +1,28 @@
+import java.sql.SQLOutput
 import java.util.logging.Level
 
 @OptIn(ExperimentalStdlibApi::class)
 fun main(args: Array<String>) {
+    level1()
+}
 
-    val ANSI_RESET = "\u001B[0m"
-    val ANSI_BLACK = "\u001B[30m"
-    val ANSI_RED = "\u001B[31m"
-    val ANSI_GREEN = "\u001B[32m"
-    val ANSI_YELLOW = "\u001B[33m"
-    val ANSI_BLUE = "\u001B[34m"
-    val ANSI_PURPLE = "\u001B[35m"
-    val ANSI_CYAN = "\u001B[36m"
-    val ANSI_WHITE = "\u001B[37m"
+val ANSI_RESET = "\u001B[0m"
+val ANSI_BLACK = "\u001B[30m"
+val ANSI_RED = "\u001B[31m"
+val ANSI_GREEN = "\u001B[32m"
+val ANSI_YELLOW = "\u001B[33m"
+val ANSI_BLUE = "\u001B[34m"
+val ANSI_PURPLE = "\u001B[35m"
+val ANSI_CYAN = "\u001B[36m"
+val ANSI_WHITE = "\u001B[37m"
 
+var choice : String = ""
+var osGameOver : String = ""
+
+var player = Player("")
+
+@OptIn(ExperimentalStdlibApi::class)
+fun level1(){
 
 //    println("$ANSI_BLUE Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
 //    println("")
@@ -59,9 +69,7 @@ fun main(args: Array<String>) {
     println("$ANSI_GREEN Please Enter your name  $ANSI_RESET")
 
     var username = readLine()
-
-    val player = Player("$username")
-
+    player = Player("$username")
     while (username!!.isBlank()) {
         println("$ANSI_RED enter a valid username $ANSI_RESET")
         username = readLine()
@@ -75,9 +83,8 @@ fun main(args: Array<String>) {
 
     println("$ANSI_RED You spot a Radroach in your room!")
     Thread.sleep(1000)
-    val radRoach = Radroach("Radroach", 5)
+    val radRoach = Radroach("Radroach", 1)
     println(radRoach)
-    var choice : String = ""
 
     while(radRoach.hitpoints > 0) {
         println("What do you want to do?")
@@ -89,7 +96,7 @@ fun main(args: Array<String>) {
         choice = readLine().toString()
 
         if (radRoach.hitpoints > 0) {
-            radRoach.attack(player, 0, 1)
+            radRoach.attack(player, 1, 1)
         }
 
         when (choice) {
@@ -133,38 +140,35 @@ fun main(args: Array<String>) {
     println("* Will you $ANSI_GREEN $username $ANSI_BLUE help the vault by going on this mission? *\n ")
     println("What do you say to his quest? $ANSI_YELLOW Yes $ANSI_RESET or $ANSI_YELLOW no $ANSI_RESET?")
     Thread.sleep(2000)
-    var osGameOver : String = ""
-
     osGameOver = readLine().toString().lowercase()
 
-    fun gameOver1() {
-        println("$ANSI_RED You have declined the mission of the overseer and the vault. \n" +
-                "The vault is doomed and there is nothing you're going to do about it. \n" +
-                "At somepoint the water starts turning green and glowing, its irratiated. \n" +
-                "Everybody in the vault dies. \n \n" +
-                "GameOver!")
-
-
-    }
-
-    fun level2(){
-        println("$ANSI_BLUE You take the baseball bat from your room with you and \n " +
-                "make your way to the vault entrance")
-        Thread.sleep(1000)
-        val baseBallBat = Weapons ("BaseBall bat", 1, 10)
-        Thread.sleep(1000)
-        player.weapon = baseBallBat
-        player.levelUp()
-        println(player)
-
-
-    }
     when (osGameOver){
         "yes" -> level2()
         "no" -> gameOver1()
 
     }
 
+}
+
+fun gameOver1() {
+    println("$ANSI_RED You have declined the mission of the overseer and the vault. \n" +
+            "The vault is doomed and there is nothing you're going to do about it. \n" +
+            "At somepoint the water starts turning green and glowing, its irratiated. \n" +
+            "Everybody in the vault dies. \n \n" +
+            "GameOver!")
+
 
 }
 
+fun level2(){
+    println("$ANSI_BLUE You take the baseball bat from your room with you and \n " +
+            "make your way to the vault entrance")
+    Thread.sleep(1000)
+    val baseBallBat = Weapons ("BaseBall bat", 1, 10)
+    Thread.sleep(1000)
+    player.weapon = baseBallBat
+    player.levelUp()
+    println(player)
+
+
+}
