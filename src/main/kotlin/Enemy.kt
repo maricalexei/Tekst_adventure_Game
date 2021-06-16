@@ -1,3 +1,3 @@
-open class Enemy(name: String, hitpoints: Int) : Characters(name, hitpoints) {
+open class Enemy(name: String, maxHitpoints: Int) : Characters(name, maxHitpoints) {
 
 }

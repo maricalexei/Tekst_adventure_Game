@@ -1,4 +1,4 @@
-open class Characters (val name: String, var hitpoints: Int) {
+open class Characters (val name: String, open var maxHitpoints: Int) {
 
     val ANSI_RESET = "\u001B[0m"
     val ANSI_BLACK = "\u001B[30m"
@@ -11,10 +11,10 @@ open class Characters (val name: String, var hitpoints: Int) {
     val ANSI_WHITE = "\u001B[37m"
 
     open fun takeDamage(damage: Int){
-        val remainingHitpoints = hitpoints - damage
+        val remainingHitpoints = maxHitpoints - damage
         if (remainingHitpoints > 0){
             ANSI_RED
-            println("$name took $damage points of damage and has $hitpoints hitpoints left.")
+            println("$name took $damage points of damage and has $maxHitpoints hitpoints left.")
             ANSI_RESET
         } else {
             if (remainingHitpoints <= 0) {
@@ -27,10 +27,10 @@ open class Characters (val name: String, var hitpoints: Int) {
                 ANSI_RESET
             }
         }
-        hitpoints = remainingHitpoints
+        maxHitpoints = remainingHitpoints
     }
     override fun toString(): String {
-        return "Name: $name, Hitpoints: $hitpoints"
+        return "Name: $name, Hitpoints: $maxHitpoints"
     }
 
     open fun attack(character: Characters, minDamage: Int, maxDamage: Int){

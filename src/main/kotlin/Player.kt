@@ -1,16 +1,11 @@
 import kotlin.io.println as println
 
-class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
+class Player(name: String, override var maxHitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
     Characters (name, maxHitpoints){
     var weapon = Weapons("Fists", 1, 2)
 
     private var currentHitpoints = maxHitpoints
 
-    fun dead(){
-        if (maxHitpoints < 1) {
-            died()
-        }
-    }
 
     fun heal(healthAmount : Int){
         currentHitpoints += healthAmount
@@ -28,6 +23,27 @@ class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var r
 
     }
 
+    override fun takeDamage(damage: Int) {
+        val remainingHitpoints = maxHitpoints - damage
+        if (remainingHitpoints > 0){
+            ANSI_RED
+            println("$name took $damage points of damage and has $remainingHitpoints hitpoints left.")
+            ANSI_RESET
+        } else {
+            if (remainingHitpoints <= 0) {
+                ANSI_RED
+                println("$name took $damage points of damage and is dead")
+                died()
+                ANSI_RESET
+            } else {
+                ANSI_RED
+                println("$name has $remainingHitpoints left.")
+                ANSI_RESET
+            }
+        }
+        maxHitpoints = remainingHitpoints
+    }
+
    fun levelUp(){
        level ++
        heal(maxHitpoints)
@@ -38,14 +54,12 @@ class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var r
    }
 
 
-
-
     override fun toString(): String {
 
         return """
             $ANSI_GREEN
             name:  $name
-            life:  $hitpoints
+            life:  $maxHitpoints
             level: $level
             Rads: $radiation
             weapon: ${weapon.name}
