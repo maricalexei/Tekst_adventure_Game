@@ -125,12 +125,14 @@ fun main(args: Array<String>) {
             "* we need someone to get out into the wasteland and find a waterchip for us before its too late. *")
     Thread.sleep(1000)
     println("")
+    Thread.sleep(1000)
     println("* I'm asking you to go out into the wasteland and find us that waterchip,*\n " +
             "* With that chip our vault can be saved *")
     println("")
+    Thread.sleep(1000)
     println("* Will you $ANSI_GREEN $username $ANSI_BLUE help the vault by going on this mission? *\n ")
     println("What do you say to his quest? $ANSI_YELLOW Yes $ANSI_RESET or $ANSI_YELLOW no $ANSI_RESET?")
-
+    Thread.sleep(2000)
     var osGameOver : String = ""
 
     osGameOver = readLine().toString().lowercase()
@@ -148,14 +150,13 @@ fun main(args: Array<String>) {
     fun level2(){
         println("$ANSI_BLUE You take the baseball bat from your room with you and \n " +
                 "make your way to the vault entrance")
-
+        Thread.sleep(1000)
         val baseBallBat = Weapons ("BaseBall bat", 1, 10)
-
+        Thread.sleep(1000)
         player.weapon = baseBallBat
-        player.hitpoints = 10
-        player.level
+        player.levelUp()
+        println(player)
 
-        println("")
 
     }
     when (osGameOver){

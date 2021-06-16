@@ -1,8 +1,18 @@
 import kotlin.io.println as println
 
-class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
-    Characters (name, hitpoints){
+class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
+    Characters (name, maxHitpoints){
     var weapon = Weapons("Fists", 1, 2)
+
+    var currentHitpoints = maxHitpoints
+
+
+    fun heal(healthAmount : Int){
+        currentHitpoints += healthAmount
+        if (currentHitpoints > maxHitpoints){
+            currentHitpoints = maxHitpoints
+        }
+    }
 
     fun show() {
         if (hitpoints < 0) {
@@ -13,9 +23,20 @@ class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiatio
 
     }
 
+   fun levelUp(){
+       level ++
+       heal(maxHitpoints)
+       maxHitpoints += 2
+       weapon.minDamage = weapon.minDamage + level
+       weapon.maxDamage = weapon.maxDamage + level * 2
+
+   }
+
+
     override fun toString(): String {
-        ANSI_GREEN
+
         return """
+            $ANSI_GREEN
             name:  $name
             life:  $hitpoints
             level: $level
@@ -23,8 +44,9 @@ class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiatio
             weapon: ${weapon.name}
             Min-Damage: ${weapon.minDamage}
             Max-Damage: ${weapon.maxDamage}
+            $ANSI_RESET
             """
-        ANSI_RESET
+
     }
 
 
