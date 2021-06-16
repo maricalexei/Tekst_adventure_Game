@@ -6,6 +6,11 @@ class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var r
 
     private var currentHitpoints = maxHitpoints
 
+    fun dead(){
+        if (maxHitpoints < 1) {
+            died()
+        }
+    }
 
     fun heal(healthAmount : Int){
         currentHitpoints += healthAmount
@@ -15,7 +20,7 @@ class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var r
     }
 
     fun show() {
-        if (hitpoints < 0) {
+        if (maxHitpoints < 0) {
             println("$name is dead")
         } else {
             println("$name is alive")
@@ -31,6 +36,8 @@ class Player(name: String, var maxHitpoints: Int = 10, var level: Int = 1, var r
        weapon.maxDamage = weapon.maxDamage + level * 2
 
    }
+
+
 
 
     override fun toString(): String {

@@ -170,5 +170,8 @@ fun level2(){
     player.levelUp()
     println(player)
 
+}
 
+fun died(){
+    println("$ANSI_RED You have died and lost the game $ANSI_RESET")
 }
