@@ -1,49 +1,59 @@
 fun main(args: Array<String>) {
 
+    val ANSI_RESET = "\u001B[0m"
+    val ANSI_BLACK = "\u001B[30m"
+    val ANSI_RED = "\u001B[31m"
+    val ANSI_GREEN = "\u001B[32m"
+    val ANSI_YELLOW = "\u001B[33m"
+    val ANSI_BLUE = "\u001B[34m"
+    val ANSI_PURPLE = "\u001B[35m"
+    val ANSI_CYAN = "\u001B[36m"
+    val ANSI_WHITE = "\u001B[37m"
 
 
-    println("Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
-    println("")
-    Thread.sleep(2000)
-    println("In the year 2077 the world is split into two factions who are at war with one another.")
-    println("")
-    Thread.sleep(3000)
-    println("We have the W.E.S.T which is comprised of the Old world contents:\n" +
-            "Europe, North and South America and Oceania.")
-    println("")
-    Thread.sleep(3000)
-    println("We have the E.A.S.T. which is comprised of the Old world contents:\n" +
-            "U.S.S.R., Turkey and Asia")
-    println("")
-    Thread.sleep(4000)
-    println("The great war was started with the Old World country china declaring war against Europe,\n" +
-            "when this happened China allied with all of the countries in Asia,\n" +
-            "the Soviet Union and turkey and together they formed the E.A.S.T.")
-    println("")
-    Thread.sleep(5000)
-    println("When China declared war against Europe,\n" +
-            "Europe sought help from America and Oceania and they together formed the W.E.S.T.")
-    println("")
-    Thread.sleep(3000)
-    println("Everyone was already prepared for the war and Vaults were build in preparation of the war.\n" +
-            "As much of the civilian forces were commanded to take shelter in these vaults\n" +
-            "to protect them from the nuclear war.")
-    println("")
-    Thread.sleep(4000)
-    println("The world that we knew was destroyed and became a wasteland,\n" +
-            "the only survivors had to make do with wat was left.\n" +
-            "The vaults that were build pre war almost never opened,\n" +
-            "and had no contact with the outside world. ")
-    println("")
-    Thread.sleep(5000)
-    println("You are one of those people,\n" +
-            "You are born in a vault,\n" +
-            "You are expected to live in the vault\n" +
-            "and die in the vault.")
 
-    Thread.sleep(6000)
-    println("------------------")
-    println("Please Enter your name")
+//    println("Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
+//    println("")
+//    Thread.sleep(2000)
+//    println("In the year 2077 the world is split into two factions who are at war with one another.")
+//    println("")
+//    Thread.sleep(3000)
+//    println("We have the W.E.S.T which is comprised of the Old world contents:\n" +
+//            "Europe, North and South America and Oceania.")
+//    println("")
+//    Thread.sleep(3000)
+//    println("We have the E.A.S.T. which is comprised of the Old world contents:\n" +
+//            "U.S.S.R., Turkey and Asia")
+//    println("")
+//    Thread.sleep(4000)
+//    println("The great war was started with the Old World country china declaring war against Europe,\n" +
+//            "when this happened China allied with all of the countries in Asia,\n" +
+//            "the Soviet Union and turkey and together they formed the E.A.S.T.")
+//    println("")
+//    Thread.sleep(5000)
+//    println("When China declared war against Europe,\n" +
+//            "Europe sought help from America and Oceania and they together formed the W.E.S.T.")
+//    println("")
+//    Thread.sleep(3000)
+//    println("Everyone was already prepared for the war and Vaults were build in preparation of the war.\n" +
+//            "As much of the civilian forces were commanded to take shelter in these vaults\n" +
+//            "to protect them from the nuclear war.")
+//    println("")
+//    Thread.sleep(4000)
+//    println("The world that we knew was destroyed and became a wasteland,\n" +
+//            "the only survivors had to make do with wat was left.\n" +
+//            "The vaults that were build pre war almost never opened,\n" +
+//            "and had no contact with the outside world. ")
+//    println("")
+//    Thread.sleep(5000)
+//    println("You are one of those people,\n" +
+//            "You are born in a vault,\n" +
+//            "You are expected to live in the vault\n" +
+//            "and die in the vault.")
+//
+//    Thread.sleep(6000)
+//    println("------------------")
+//    println("Please Enter your name")0
 
     var username = readLine()
 
@@ -66,7 +76,7 @@ fun main(args: Array<String>) {
     println(radRoach)
     var choice : String = ""
 
-    while(radRoach.hitpoints > 1) {
+    while(radRoach.hitpoints > 0) {
         println("What do you want to do?")
         Thread.sleep(500)
         println("Press 1 to attack")
@@ -116,15 +126,6 @@ fun main(args: Array<String>) {
     println("* I'm asking you to go out into the wasteland and find us that waterchip, \n *" +
             "* With that chip our vault *")
 
-    val levelChoice : String = ""
-
-    while (levelChoice != "0") {
-
-
-        when (levelChoice) {
-            "1" -> Level2.kt
-            "2" -> Level3
-        }
-    }
+    
 }
 
