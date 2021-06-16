@@ -14,6 +14,7 @@ class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiatio
     }
 
     override fun toString(): String {
+        ANSI_GREEN
         return """
             name:  $name
             life:  $hitpoints
@@ -23,6 +24,7 @@ class Player(name: String, hitpoints: Int = 10, var level: Int = 1, var radiatio
             Min-Damage: ${weapon.minDamage}
             Max-Damage: ${weapon.maxDamage}
             """
+        ANSI_RESET
     }
 
 

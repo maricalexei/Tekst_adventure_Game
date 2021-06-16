@@ -1,3 +1,6 @@
+import java.util.logging.Level
+
+@OptIn(ExperimentalStdlibApi::class)
 fun main(args: Array<String>) {
 
     val ANSI_RESET = "\u001B[0m"
@@ -11,8 +14,7 @@ fun main(args: Array<String>) {
     val ANSI_WHITE = "\u001B[37m"
 
 
-
-//    println("Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
+//    println("$ANSI_BLUE Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
 //    println("")
 //    Thread.sleep(2000)
 //    println("In the year 2077 the world is split into two factions who are at war with one another.")
@@ -53,24 +55,25 @@ fun main(args: Array<String>) {
 //
 //    Thread.sleep(6000)
 //    println("------------------")
-//    println("Please Enter your name")0
+
+    println("$ANSI_GREEN Please Enter your name  $ANSI_RESET")
 
     var username = readLine()
 
     val player = Player("$username")
 
     while (username!!.isBlank()) {
-        println("Please enter a valid username")
+        println("$ANSI_RED enter a valid username $ANSI_RESET")
         username = readLine()
     }
 
     player.show()
 
-    println("You are $username\n" +
-            "You wake up in the vault on what seems like a normal day\n" +
-            "")
+    println("$ANSI_BLUE You are $ANSI_GREEN $username $ANSI_BLUE\n" +
+            "You wake up in the vault on what seems like a normal day\n $ANSI_RESET")
 
-    println("You spot a Radroach in your room!")
+
+    println("$ANSI_RED You spot a Radroach in your room!")
     Thread.sleep(1000)
     val radRoach = Radroach("Radroach", 5)
     println(radRoach)
@@ -93,20 +96,19 @@ fun main(args: Array<String>) {
             "1" -> player.attack(radRoach, player.weapon.minDamage, player.weapon.maxDamage)
             "2" -> println("You fail to get away")
             else -> {
-                println("No valid input detected")
+                println("No valid input detected ")
             }
         }
 
     }
-    println("You find a Baseball bat and decide to take it with you")
 
-    val baseBallBat = Weapons ("BaseBall bat", 0, 10)
+    println("$ANSI_PURPLE find a Baseball bat and decide to take it with you ")
 
-    player.weapon = baseBallBat
+    println(ANSI_GREEN)
     println(player)
 
     Thread.sleep(1000)
-    println("")
+    println("$ANSI_BLUE")
     println("You hear some people talking in the commonroom,\n" +
             "and you decide to talk over to see whats going on.\n")
     Thread.sleep(1000)
@@ -123,9 +125,45 @@ fun main(args: Array<String>) {
             "* we need someone to get out into the wasteland and find a waterchip for us before its too late. *")
     Thread.sleep(1000)
     println("")
-    println("* I'm asking you to go out into the wasteland and find us that waterchip, \n *" +
-            "* With that chip our vault *")
+    println("* I'm asking you to go out into the wasteland and find us that waterchip,*\n " +
+            "* With that chip our vault can be saved *")
+    println("")
+    println("* Will you $ANSI_GREEN $username $ANSI_BLUE help the vault by going on this mission? *\n ")
+    println("What do you say to his quest? $ANSI_YELLOW Yes $ANSI_RESET or $ANSI_YELLOW no $ANSI_RESET?")
 
-    
+    var osGameOver : String = ""
+
+    osGameOver = readLine().toString().lowercase()
+
+    fun gameOver1() {
+        println("$ANSI_RED You have declined the mission of the overseer and the vault. \n" +
+                "The vault is doomed and there is nothing you're going to do about it. \n" +
+                "At somepoint the water starts turning green and glowing, its irratiated. \n" +
+                "Everybody in the vault dies. \n \n" +
+                "GameOver!")
+
+
+    }
+
+    fun level2(){
+        println("$ANSI_BLUE You take the baseball bat from your room with you and \n " +
+                "make your way to the vault entrance")
+
+        val baseBallBat = Weapons ("BaseBall bat", 1, 10)
+
+        player.weapon = baseBallBat
+        player.hitpoints = 10
+        player.level
+
+        println("")
+
+    }
+    when (osGameOver){
+        "yes" -> level2()
+        "no" -> gameOver1()
+
+    }
+
+
 }
 
