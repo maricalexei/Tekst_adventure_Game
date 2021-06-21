@@ -5,7 +5,7 @@ import kotlin.system.exitProcess
 @OptIn(ExperimentalStdlibApi::class)
 
 fun main(args: Array<String>) {
-    level1()
+    level2()
 }
 
 val ANSI_RESET = "\u001B[0m"
@@ -161,14 +161,75 @@ fun gameOver1() {
 
 fun level2(){
     println("$ANSI_BLUE You take the baseball bat from your room with you and \n " +
-            "make your way to the vault entrance")
+            "make your way to the vault entrance$ANSI_RESET")
     Thread.sleep(1000)
     val baseBallBat = Weapons ("BaseBall bat", 1, 10)
     Thread.sleep(1000)
     player.weapon = baseBallBat
     player.levelUp()
     println(player)
+    Thread.sleep(5000)
+    println("$ANSI_BLUE As you get to the vault entrance you see the overseer waiting for you \n" +
+            "Overseer: \n" +
+            "* Its important for the members of our vault that you comeback with that waterchip. *\n" +
+            "* You need to make sure you find that chip and bring it back in time *")
+    Thread.sleep(2000)
+    println("I'm ready to go 'Press: 1'")
+    Thread.sleep(500)
+    println("Ask the overseer where to go 'Press: 2'")
 
+
+    Thread.sleep(1000)
+    choice = readLine().toString()
+    when (choice) {
+        "1"-> println("You tell the overseer that you will make sure you find the waterchip and bring it back")
+        "2"-> getMap()
+    }
+    Thread.sleep(1000)
+    println("The vault door opens for the first time after de bombs were dropped. \n" +
+            "as the door opens, you are almost blinded from the sunlight of the wasteland. \n" +
+            "You step outside, the door closes behind you and you are now outside.")
+    Thread.sleep(3000)
+
+    println("Do you go east north or west?")
+    choice = readLine()?.toLowerCase().toString()
+    val north = "north"
+    val east = "east"
+    val west = "west"
+
+    while (choice != north || choice != east || choice != west) {
+
+        when (choice) {
+            "north" -> level2North()
+            "east" -> level2East()
+            "west" -> level2West()
+        }
+    }
+    Thread.sleep(2000)
+
+
+
+
+}
+
+fun level2West(){
+    println("level2west")
+}
+
+fun level2North(){
+    println("level2north")
+}
+
+fun level2East(){
+    println("level2east")
+}
+
+fun getMap(){
+    println("$ANSI_BLUE You ask the overseer where you need to go and he hands you a map")
+    val map = Loot("A old map of the wasteland", LootType.OBJECT, 0.0)
+    player.inventory.add(map)
+    println(map)
+    println("You look at the map and know you need to go north first when you exit the vault")
 }
 
 fun died(){
