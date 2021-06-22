@@ -447,7 +447,7 @@ fun levelboss(){
     Thread.sleep(1000)
     println("${ANSI_RED}as you go in to pick it up the DeathClaw jumps in at you!!!")
 
-    var deathClaw = Deathclaw("DeathClaw", 100, 5, 10)
+    var deathClaw = Deathclaw("DeathClaw", 150, 5, 10)
 
     while(deathClaw.maxHitpoints > 0){
         println("Press X to block his attack")
@@ -468,6 +468,23 @@ fun levelboss(){
             "2"->player.superAttack(deathClaw, player.weapon.minDamage, player.weapon.maxDamage, 1,6)
         }
 
+    }
+    var waterChipDing = Loot("waterChipDing", lootType = LootType.OBJECT, 0.0)
+    player.inventory.add(waterChipDing)
+    println(player.inventory)
+
+
+    println("${ANSI_BLUE}you run back as fast as you can to the vault \n" +
+            "you feel relieved that its finally over \n" +
+            "once you see the overseer he demands the waterchip from you \n" +
+            "Do you want to give it to him?\n" +
+            "type yes for yes\n" +
+            "type no for no"
+    )
+    choice = readLine().toString().toLowerCase()
+    when(choice){
+        "yes"->finish1()
+        "no"->finish2()
     }
 }
 
@@ -543,5 +560,14 @@ fun getMap(){
 
 fun died(){
     println("${ANSI_RED}You have died and lost the game $ANSI_RESET")
+    exitProcess(1)
+}
+fun finish1(){
+    println("${ANSI_GREEN}You have finished the game as a slave congratulations")
+    exitProcess(1)
+
+}
+fun finish2() {
+    println("${ANSI_GREEN}You have finished the game as a badass congratulations")
     exitProcess(1)
 }
