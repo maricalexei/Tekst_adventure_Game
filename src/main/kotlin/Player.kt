@@ -11,6 +11,7 @@ class Player(name: String, override var maxHitpoints: Int = 10, var hitpoints: I
         if (hitpoints > maxHitpoints){
             hitpoints = maxHitpoints
         }
+        println("$name has healed back to full health!")
     }
 
     fun show() {
@@ -93,6 +94,12 @@ class Player(name: String, override var maxHitpoints: Int = 10, var hitpoints: I
        heal(maxHitpoints)
        weapon.minDamage = weapon.minDamage + level
        weapon.maxDamage = weapon.maxDamage + level * 2
+
+       println("${ANSI_PURPLE}${name} has leveled up!\n" +
+               "You are now level:$level!\n" +
+               "Your min damage now is: ${weapon.minDamage}\n" +
+               "Your max damage now is: ${weapon.maxDamage}\n" +
+               "Your max Hitpoints now is: ${maxHitpoints}.")
 
    }
 
