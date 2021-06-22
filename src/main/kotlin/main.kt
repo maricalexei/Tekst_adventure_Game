@@ -1,11 +1,12 @@
 import java.sql.SQLOutput
 import java.util.logging.Level
+import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 
 @OptIn(ExperimentalStdlibApi::class)
 
 fun main(args: Array<String>) {
-    level2()
+    level2East()
 }
 
 val ANSI_RESET = "\u001B[0m"
@@ -26,46 +27,46 @@ var player = Player("")
 @OptIn(ExperimentalStdlibApi::class)
 fun level1(){
 
-    println("$ANSI_BLUE Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
-    println("")
-    Thread.sleep(2000)
-    println("In the year 2077 the world is split into two factions who are at war with one another.")
-    println("")
-    Thread.sleep(3000)
-    println("We have the W.E.S.T which is comprised of the Old world contents:\n" +
-            "Europe, North and South America and Oceania.")
-    println("")
-    Thread.sleep(3000)
-    println("We have the E.A.S.T. which is comprised of the Old world contents:\n" +
-            "U.S.S.R., Turkey and Asia")
-    println("")
-    Thread.sleep(4000)
-    println("The great war was started with the Old World country china declaring war against Europe,\n" +
-            "when this happened China allied with all of the countries in Asia,\n" +
-            "the Soviet Union and turkey and together they formed the E.A.S.T.")
-    println("")
-    Thread.sleep(5000)
-    println("When China declared war against Europe,\n" +
-            "Europe sought help from America and Oceania and they together formed the W.E.S.T.")
-    println("")
-    Thread.sleep(3000)
-    println("Everyone was already prepared for the war and Vaults were build in preparation of the war.\n" +
-            "As much of the civilian forces were commanded to take shelter in these vaults\n" +
-            "to protect them from the nuclear war.")
-    println("")
-    Thread.sleep(4000)
-    println("The world that we knew was destroyed and became a wasteland,\n" +
-            "the only survivors had to make do with wat was left.\n" +
-            "The vaults that were build pre war almost never opened,\n" +
-            "and had no contact with the outside world. ")
-    println("")
-    Thread.sleep(5000)
-    println("You are one of those people,\n" +
-            "You are born in a vault,\n" +
-            "You are expected to live in the vault\n" +
-            "and die in the vault.")
-
-    Thread.sleep(6000)
+//    println("$ANSI_BLUE Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
+//    println("")
+//    Thread.sleep(2000)
+//    println("In the year 2077 the world is split into two factions who are at war with one another.")
+//    println("")
+//    Thread.sleep(3000)
+//    println("We have the W.E.S.T which is comprised of the Old world contents:\n" +
+//            "Europe, North and South America and Oceania.")
+//    println("")
+//    Thread.sleep(3000)
+//    println("We have the E.A.S.T. which is comprised of the Old world contents:\n" +
+//            "U.S.S.R., Turkey and Asia")
+//    println("")
+//    Thread.sleep(4000)
+//    println("The great war was started with the Old World country china declaring war against Europe,\n" +
+//            "when this happened China allied with all of the countries in Asia,\n" +
+//            "the Soviet Union and turkey and together they formed the E.A.S.T.")
+//    println("")
+//    Thread.sleep(5000)
+//    println("When China declared war against Europe,\n" +
+//            "Europe sought help from America and Oceania and they together formed the W.E.S.T.")
+//    println("")
+//    Thread.sleep(3000)
+//    println("Everyone was already prepared for the war and Vaults were build in preparation of the war.\n" +
+//            "As much of the civilian forces were commanded to take shelter in these vaults\n" +
+//            "to protect them from the nuclear war.")
+//    println("")
+//    Thread.sleep(4000)
+//    println("The world that we knew was destroyed and became a wasteland,\n" +
+//            "the only survivors had to make do with wat was left.\n" +
+//            "The vaults that were build pre war almost never opened,\n" +
+//            "and had no contact with the outside world. ")
+//    println("")
+//    Thread.sleep(5000)
+//    println("You are one of those people,\n" +
+//            "You are born in a vault,\n" +
+//            "You are expected to live in the vault\n" +
+//            "and die in the vault.")
+//
+//    Thread.sleep(6000)
     println("------------------")
 
     println("$ANSI_GREEN Please Enter your name  $ANSI_RESET")
@@ -94,16 +95,19 @@ fun level1(){
         println("Press 1 to attack")
         Thread.sleep(500)
         println("Press 2 to try to escape")
+        Thread.sleep(500)
+        println("Press 3 to block")
 
         choice = readLine().toString()
 
-        if (radRoach.maxHitpoints > 0) {
-            radRoach.attack(player, 1, 1)
+        if (radRoach.maxHitpoints > 0 && choice == "1" || choice == "2") {
+            radRoach.attack(player, 0, 2)
         }
 
         when (choice) {
             "1" -> player.attack(radRoach, player.weapon.minDamage, player.weapon.maxDamage)
             "2" -> println("You fail to get away")
+            "3"-> player.block(radRoach, 0, 2)
             else -> {
                 println("No valid input detected ")
             }
@@ -213,7 +217,63 @@ fun level2(){
 }
 
 fun level2West(){
-    println("level2west")
+    println("$ANSI_BLUE You go west out of the vault.")
+    Thread.sleep(1000)
+    println("$ANSI_RED You spot a raider, he doesnt look to happy seeing you")
+    var raider = Raider("Angry raider", 100,)
+    while (raider.maxHitpoints > 0){
+        println("What do you want to do?")
+        Thread.sleep(500)
+        println("Press 1 to attack")
+        Thread.sleep(500)
+        println("Press 2 to try to escape")
+        Thread.sleep(500)
+        println("Press 3 to block")
+
+        choice = readLine().toString()
+
+        if (raider.maxHitpoints > 0 && choice == "1" || choice == "2") {
+            raider.attack(player, 5, 10)
+        }
+
+        when (choice) {
+            "1" -> player.attack(raider, player.weapon.minDamage, player.weapon.maxDamage)
+            "2" -> break
+            "3"-> player.block(raider, 5, 10)
+            else -> {
+                println("No valid input detected ")
+            }
+        }
+    }
+    player.heal(player.maxHitpoints)
+    println(player)
+    ANSI_BLUE
+    println("you manage to escape from the raider, he was way to strong for you.")
+    Thread.sleep(1000)
+    println("you are lucky to get away from him. You can't continue west. ")
+    Thread.sleep(1000)
+    println("Do you want to go back?")
+    choice = readLine()?.toLowerCase().toString()
+    while (choice == "yes") {
+        if (choice == "yes") {
+            println("you go back to the vault entrance, its still closed. \n" +
+                    "you need to find the waterchip!")
+            Thread.sleep(1000)
+            println("do you want to do east north or west?")
+            val north = "north"
+            val east = "east"
+            val west = "west"
+            choice = readLine()?.toLowerCase().toString()
+            while (choice != north || choice != east || choice != west) {
+
+                when (choice) {
+                    "north" -> level2North()
+                    "east" -> level2East()
+                    "west" -> level2West()
+                }
+            }
+        }
+    }
 }
 
 fun level2North(){
@@ -277,7 +337,64 @@ fun level3East() {
 
 
 fun level2East(){
-    println("level2east")
+    println("$ANSI_BLUE You go east out of the vault.")
+    Thread.sleep(1000)
+    println("$ANSI_RED You spot a Supermutant Suicider, he is charging towards you")
+    var supermutant = SuperMutantSuicider("Super mutant suicider", 10,)
+    while (supermutant.maxHitpoints > 0){
+        println("What do you want to do?")
+        Thread.sleep(500)
+        println("Press 1 to attack")
+        Thread.sleep(500)
+        println("Press 2 to try to escape")
+        Thread.sleep(500)
+        println("Press 3 to block")
+
+        choice = readLine().toString()
+
+        supermutant.explode()
+
+        when (choice) {
+            "1" -> player.attack(supermutant, player.weapon.minDamage, player.weapon.maxDamage)
+            "2" -> break
+            "3" -> player.block(supermutant, 5, 10)
+            else -> {
+                println("No valid input detected ")
+            }
+        }
+        if (supermutant.maxHitpoints < 1){
+            supermutant.explode()
+        }
+    }
+    player.heal(player.maxHitpoints)
+    println(player)
+    ANSI_BLUE
+    println("you manage to escape from the supermutant suicider, he almost blew you up.")
+    Thread.sleep(1000)
+    println("That was close, do you want to go back to the vault entrance")
+    Thread.sleep(1000)
+    println("Do you want to go back?")
+    choice = readLine()?.toLowerCase().toString()
+    while (choice == "yes") {
+        if (choice == "yes") {
+            println("you go back to the vault entrance, its still closed. \n" +
+                    "you need to find the waterchip!")
+            Thread.sleep(1000)
+            println("do you want to do east north or west?")
+            val north = "north"
+            val east = "east"
+            val west = "west"
+            choice = readLine()?.toLowerCase().toString()
+            while (choice != north || choice != east || choice != west) {
+
+                when (choice) {
+                    "north" -> level2North()
+                    "east" -> level2East()
+                    "west" -> level2West()
+                }
+            }
+        }
+    }
 }
 
 fun getMap(){
