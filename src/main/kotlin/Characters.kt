@@ -14,7 +14,7 @@ open class Characters (val name: String, open var maxHitpoints: Int) {
         val remainingHitpoints = maxHitpoints - damage
         if (remainingHitpoints > 0){
             ANSI_RED
-            println("$name took $damage points of damage and has $maxHitpoints hitpoints left.")
+            println("$name took $damage points of damage and has $remainingHitpoints hitpoints left.")
             ANSI_RESET
         } else {
             if (remainingHitpoints <= 0) {
@@ -37,5 +37,10 @@ open class Characters (val name: String, open var maxHitpoints: Int) {
         val attackDamage = (minDamage..maxDamage).random()
         character.takeDamage(attackDamage)
         Thread.sleep(1000)
+    }
+
+    open fun block(character: Characters, minDamage: Int, maxDamage: Int){
+        val attackDamage = (minDamage..maxDamage).random()
+        player.takeDamage(attackDamage/3)
     }
 }
