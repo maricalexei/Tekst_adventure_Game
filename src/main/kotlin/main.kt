@@ -1,12 +1,9 @@
-import java.sql.SQLOutput
-import java.util.logging.Level
-import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 
 @OptIn(ExperimentalStdlibApi::class)
 
 fun main(args: Array<String>) {
-    level2East()
+    level4East()
 }
 
 val ANSI_RESET = "\u001B[0m"
@@ -279,10 +276,9 @@ fun level2West(){
 fun level2North(){
     println("level2north")
     println(
-        "$ANSI_BLUE You take the baseball bat from your room with you and \n " +
-                "make your way to the vault entrance$ANSI_RESET"
+        "$ANSI_BLUE you pick up a pistol \n " +
+                "you see nothing else$ANSI_RESET"
     )
-    Thread.sleep(1000)
     val pistol = Weapons("Pistol", 5, 15)
     Thread.sleep(1000)
     player.weapon = pistol
@@ -291,14 +287,16 @@ fun level2North(){
     Thread.sleep(5000)
     println(
         "$ANSI_BLUE As you enter the third stage you see no enemies in the distance \n" +
-                "you see a pistol on the ground, you pick it up \n"
+                "you see a pistol on the ground, you pick it up \n" +
+                "press 1 to keep walking \n" +
+                "press 2 to look on the map"
     )
 
     Thread.sleep(1000)
     choice = readLine().toString()
     when (choice) {
         "1" -> println("you keep walking")
-        "2" -> println("You look on the map")
+        "2" -> println("You look on the map and find nothing usefull")
     }
     Thread.sleep(1000)
     println(
@@ -308,31 +306,142 @@ fun level2North(){
     )
     Thread.sleep(3000)
 
-    println("Do you go east north or west?")
+    println("type east to go east :) ")
     choice = readLine()?.toLowerCase().toString()
-    val north = "north"
     val east = "east"
-    val west = "west"
 
-    while (choice != north || choice != east || choice != west) {
+    while (choice != east) {
 
         when (choice) {
-            "north" -> level4North()
-            "east" -> level3East()
+            "east" -> level4East()
         }
     }
     Thread.sleep(2000)
 }
 
+fun level4East() {
+    println("$ANSI_BLUE you walk in the level and see a van, you decide to walk towards it.")
+    val pistol = Weapons("Pistol", 5, 15)
+    player.weapon = pistol
+    player.levelUp()
+    Thread.sleep(1000)
+    println("$ANSI_RED You spot a raider, he doesnt look to happy seeing you")
+    var raiderBruiser = Raider("Happy raider", 20,)
+    while (raiderBruiser.maxHitpoints > 0){
+        println("What do you want to do?")
+        Thread.sleep(500)
+        println("Press 1 to attack")
+        Thread.sleep(500)
+        println("Press 2 to try to escape")
+        Thread.sleep(500)
+        println("Press 3 to block")
 
-fun level4North(){
-    println("level4north")
+        choice = readLine().toString()
+
+        if (raiderBruiser.maxHitpoints > 0 && choice == "1" || choice == "2") {
+            raiderBruiser.attack(player, 3, 5)
+        }
+
+        when (choice) {
+            "1" -> player.attack(raiderBruiser, player.weapon.minDamage, player.weapon.maxDamage)
+            "2" -> println("You failed to flee")
+            "3"-> player.block(raiderBruiser, 5, 10)
+            else -> {
+                println("No valid input detected ")
+            }
+        }
+    }
+    println("$ANSI_BLUE the enemy is dead and dropped a machine gun \n" +
+            "you see something in the distance \n" +
+            "its north"
+    )
+    println("type north to go north and check it out! :) ")
+    choice = readLine()?.toLowerCase().toString()
+    val north = "north"
+
+    while (choice == north) {
+
+        when (choice) {
+            "north" -> level4North()
+        }
+    }
+    Thread.sleep(2000)
 }
+fun level4North() {
+    println("level4North")
+    println(
+        "$ANSI_BLUE you picked up the machine gun and see where you need to go \n " +
+                "you see nothing else exept a radroach$ANSI_RESET"
+    )
+    Thread.sleep(1000)
+    val machinegun = Weapons("MachineGun", 10, 20)
+    Thread.sleep(1000)
+    player.weapon = machinegun
+    player.levelUp()
+    println(player)
+    println("$ANSI_RED You spot a Radroach, he looks really weak")
+    var radroacher = Radroach("roach", 2,)
+    while (radroacher.maxHitpoints > 0){
+        println("What do you want to do?")
+        Thread.sleep(500)
+        println("Press 1 to attack")
+        Thread.sleep(500)
+        println("Press 2 to try to escape")
+        Thread.sleep(500)
+        println("Press 3 to block")
 
-fun level3East() {
-    println("level2east")
+        choice = readLine().toString()
+
+        if (radroacher.maxHitpoints > 0 && choice == "1" || choice == "2") {
+            radroacher.attack(player, 3, 5)
+        }
+
+        when (choice) {
+            "1" -> player.attack(radroacher, player.weapon.minDamage, player.weapon.maxDamage)
+            "2" -> println("You failed to flee")
+            "3"-> player.block(radroacher, 5, 10)
+            else -> {
+                println("No valid input detected ")
+            }
+        }
+    }
+    Thread.sleep(5000)
+    println(
+        "$ANSI_BLUE As you enter the third stage you see no enemies in the distance \n" +
+                "you see a pistol on the ground, you pick it up \n" +
+                "press 1 to keep walking \n" +
+                "press 2 to look on the map"
+    )
+
+    Thread.sleep(1000)
+    choice = readLine().toString()
+    when (choice) {
+        "1" -> println("you keep walking")
+        "2" -> println("You look on the map and find nothing usefull")
+    }
+    Thread.sleep(1000)
+    println(
+        "you look in the distance and see something big \n" +
+                "its a deathclaw in the distance, that must be what the overseer was talking about. \n" +
+                "you feel more powerful and determined then ever to beat it!"
+    )
+    Thread.sleep(3000)
+
+    println("type boss to go to the boss room ")
+    choice = readLine()?.toLowerCase().toString()
+    val boss = "boss"
+
+    while (choice == boss) {
+
+        when (choice) {
+            "boss" -> levelboss()
+        }
+    }
+    Thread.sleep(2000)
 }
-
+fun levelboss(){
+    println("boss")
+}
 
 
 
