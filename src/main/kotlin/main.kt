@@ -3,7 +3,7 @@ import kotlin.system.exitProcess
 @OptIn(ExperimentalStdlibApi::class)
 
 fun main(args: Array<String>) {
-    level4East()
+    levelboss()
 }
 
 val ANSI_RESET = "\u001B[0m"
@@ -441,7 +441,35 @@ fun level4North() {
     Thread.sleep(2000)
 }
 fun levelboss(){
-    println("boss")
+
+    player.levelUp()
+    println(player)
+    println("$ANSI_BLUE You see the waterchip, its quite a bit bigger then expected.\n")
+    Thread.sleep(1000)
+    println("$ANSI_RED as you go in to pick it up the DeathClaw jumps in at you!!!")
+
+    var deathClaw = Deathclaw("DeathClaw", 100, 5, 10)
+
+    while(deathClaw.maxHitpoints > 0){
+        println("Press X to block his attack")
+        choice = readLine().toString().toLowerCase()
+        if(choice == "x"){
+            player.superBlock(5, 10, 1,6)
+        }
+        Thread.sleep(500)
+        println("He is open get ready to attack!!")
+        Thread.sleep(500)
+        println("Press 1 to do a normal attack!")
+        Thread.sleep(500)
+        println("Press 2 to do a super attack!!!")
+        choice = readLine().toString().toLowerCase()
+
+        when(choice){
+            "1"->player.attack(deathClaw, player.weapon.minDamage, player.weapon.maxDamage)
+            "2"->player.superAttack(deathClaw, player.weapon.minDamage, player.weapon.maxDamage, 1,6)
+        }
+
+    }
 }
 
 

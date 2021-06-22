@@ -43,6 +43,50 @@ class Player(name: String, override var maxHitpoints: Int = 10, var hitpoints: I
         hitpoints = remainingHitpoints
     }
 
+    open fun superAttack(character: Characters, minDamage: Int, maxDamage: Int, minOdds: Int, maxOdds: Int){
+        var damage = (minDamage..maxDamage).random()
+        var Odds = (minOdds..maxOdds).random()
+        when (Odds) {
+            in 2..5 -> {
+                println("You do some damage to him!")
+                Thread.sleep(500)
+                character.takeDamage(damage * 2)
+            }
+            6 -> {
+                println("Critical Hit!!!")
+                Thread.sleep(500)
+                character.takeDamage(damage * 3)
+            }
+            else -> {
+                println("You failed your attack :c")
+                Thread.sleep(500)
+                character.takeDamage(0)
+            }
+        }
+    }
+
+    open fun superBlock(minDamage: Int, maxDamage: Int, minOdds: Int, maxOdds: Int){
+        var odds = (minOdds..maxOdds).random()
+        var damage = (minDamage..maxDamage).random()
+        when (odds) {
+            in 2..5 -> {
+                println("You managed to block some of his attack!")
+                Thread.sleep(500)
+                player.takeDamage(damage/2)
+            }
+            1 -> {
+                println("You failed to block his attack!!")
+                Thread.sleep(500)
+                player.takeDamage(damage)
+            }
+            6 -> {
+                println("He misses his attack!!")
+                Thread.sleep(500)
+                player.takeDamage(0)
+            }
+        }
+    }
+
    fun levelUp(){
        level ++
        maxHitpoints += 2
