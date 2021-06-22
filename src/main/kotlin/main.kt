@@ -253,6 +253,7 @@ fun level2West(){
     choice = readLine()?.toLowerCase().toString()
     while (choice == "yes") {
         if (choice == "yes") {
+            player.heal(player.maxHitpoints)
             println("you go back to the vault entrance, its still closed. \n" +
                     "you need to find the waterchip!")
             Thread.sleep(1000)
