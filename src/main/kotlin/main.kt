@@ -3,7 +3,7 @@ import kotlin.system.exitProcess
 @OptIn(ExperimentalStdlibApi::class)
 
 fun main(args: Array<String>) {
-    levelboss()
+    level1()
 }
 
 val ANSI_RESET = "\u001B[0m"
@@ -24,7 +24,7 @@ var player = Player("")
 @OptIn(ExperimentalStdlibApi::class)
 fun level1(){
 
-//    println("$ANSI_BLUE Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
+//    println("${ANSI_BLUE}Welcome to the world  of Fallin.\nA postapocalyptic world set in the year 2377.")
 //    println("")
 //    Thread.sleep(2000)
 //    println("In the year 2077 the world is split into two factions who are at war with one another.")
@@ -77,11 +77,11 @@ fun level1(){
 
     player.show()
 
-    println("$ANSI_BLUE You are $ANSI_GREEN $username $ANSI_BLUE\n" +
-            "You wake up in the vault on what seems like a normal day\n $ANSI_RESET")
+    println("${ANSI_BLUE}You are ${ANSI_GREEN}$username $ANSI_BLUE\n" +
+            "You wake up in the vault on what seems like a normal day\n")
 
 
-    println("$ANSI_RED You spot a Radroach in your room!")
+    println("${ANSI_RED}You spot a Radroach in your room!")
     Thread.sleep(1000)
     val radRoach = Radroach("Radroach", 5)
     println(radRoach)
@@ -115,7 +115,7 @@ fun level1(){
     println(player)
 
     Thread.sleep(1000)
-    println("$ANSI_BLUE")
+    println("${ANSI_BLUE}")
     println("You hear some people talking in the commonroom,\n" +
             "and you decide to talk over to see whats going on.\n")
     Thread.sleep(1000)
@@ -137,8 +137,8 @@ fun level1(){
             "* With that chip our vault can be saved *")
     println("")
     Thread.sleep(1000)
-    println("* Will you $ANSI_GREEN $username $ANSI_BLUE help the vault by going on this mission? *\n ")
-    println("What do you say to his quest? $ANSI_YELLOW Yes $ANSI_RESET or $ANSI_YELLOW no $ANSI_RESET?")
+    println("* Will you ${ANSI_GREEN}$username ${ANSI_BLUE}help the vault by going on this mission? *\n ")
+    println("What do you say to his quest? ${ANSI_YELLOW}yes ${ANSI_RESET} or${ANSI_YELLOW} no?")
     Thread.sleep(2000)
     osGameOver = readLine().toString().lowercase()
 
@@ -151,7 +151,7 @@ fun level1(){
 }
 
 fun gameOver1() {
-    println("$ANSI_RED You have declined the mission of the overseer and the vault. \n" +
+    println("${ANSI_RED}You have declined the mission of the overseer and the vault. \n" +
             "The vault is doomed and there is nothing you're going to do about it. \n" +
             "At somepoint the water starts turning green and glowing, its irratiated. \n" +
             "Everybody in the vault dies. \n \n" +
@@ -161,8 +161,8 @@ fun gameOver1() {
 }
 
 fun level2(){
-    println("$ANSI_BLUE You take the baseball bat from your room with you and \n " +
-            "make your way to the vault entrance$ANSI_RESET")
+    println("${ANSI_BLUE}You take the baseball bat from your room with you and \n " +
+            "make your way to the vault entrance")
     Thread.sleep(1000)
     val baseBallBat = Weapons ("BaseBall bat", 1, 10)
     Thread.sleep(1000)
@@ -170,7 +170,7 @@ fun level2(){
     player.levelUp()
     println(player)
     Thread.sleep(5000)
-    println("$ANSI_BLUE As you get to the vault entrance you see the overseer waiting for you \n" +
+    println("${ANSI_BLUE}As you get to the vault entrance you see the overseer waiting for you \n" +
             "Overseer: \n" +
             "* Its important for the members of our vault that you comeback with that waterchip. *\n" +
             "* You need to make sure you find that chip and bring it back in time *")
@@ -214,9 +214,9 @@ fun level2(){
 }
 
 fun level2West(){
-    println("$ANSI_BLUE You go west out of the vault.")
+    println("${ANSI_BLUE}You go west out of the vault.")
     Thread.sleep(1000)
-    println("$ANSI_RED You spot a raider, he doesnt look to happy seeing you")
+    println("${ANSI_RED}You spot a raider, he doesnt look to happy seeing you")
     var raider = Raider("Angry raider", 100,)
     while (raider.maxHitpoints > 0){
         println("What do you want to do?")
@@ -277,8 +277,7 @@ fun level2West(){
 fun level2North(){
     println("level2north")
     println(
-        "$ANSI_BLUE you pick up a pistol \n " +
-                "you see nothing else$ANSI_RESET"
+        "${ANSI_BLUE}you pick up a pistol \n you see nothing else"
     )
     val pistol = Weapons("Pistol", 5, 15)
     Thread.sleep(1000)
@@ -287,7 +286,7 @@ fun level2North(){
     println(player)
     Thread.sleep(5000)
     println(
-        "$ANSI_BLUE As you enter the third stage you see no enemies in the distance \n" +
+        "${ANSI_BLUE}As you enter the third stage you see no enemies in the distance \n" +
                 "you see a pistol on the ground, you pick it up \n" +
                 "press 1 to keep walking \n" +
                 "press 2 to look on the map"
@@ -311,7 +310,7 @@ fun level2North(){
     choice = readLine()?.toLowerCase().toString()
     val east = "east"
 
-    while (choice != east) {
+    while (choice == east) {
 
         when (choice) {
             "east" -> level4East()
@@ -321,12 +320,12 @@ fun level2North(){
 }
 
 fun level4East() {
-    println("$ANSI_BLUE you walk in the level and see a van, you decide to walk towards it.")
+    println("${ANSI_BLUE}you walk in the level and see a van, you decide to walk towards it.")
     val pistol = Weapons("Pistol", 5, 15)
     player.weapon = pistol
     player.levelUp()
     Thread.sleep(1000)
-    println("$ANSI_RED You spot a raider, he doesnt look to happy seeing you")
+    println("${ANSI_RED}You spot a raider, he doesnt look to happy seeing you")
     var raiderBruiser = Raider("Happy raider", 20,)
     while (raiderBruiser.maxHitpoints > 0){
         println("What do you want to do?")
@@ -352,7 +351,7 @@ fun level4East() {
             }
         }
     }
-    println("$ANSI_BLUE the enemy is dead and dropped a machine gun \n" +
+    println("${ANSI_BLUE}the enemy is dead and dropped a machine gun \n" +
             "you see something in the distance \n" +
             "its north"
     )
@@ -371,7 +370,7 @@ fun level4East() {
 fun level4North() {
     println("level4North")
     println(
-        "$ANSI_BLUE you picked up the machine gun and see where you need to go \n " +
+        "${ANSI_BLUE}you picked up the machine gun and see where you need to go \n " +
                 "you see nothing else exept a radroach$ANSI_RESET"
     )
     Thread.sleep(1000)
@@ -380,7 +379,7 @@ fun level4North() {
     player.weapon = machinegun
     player.levelUp()
     println(player)
-    println("$ANSI_RED You spot a Radroach, he looks really weak")
+    println("${ANSI_RED}You spot a Radroach, he looks really weak")
     var radroacher = Radroach("roach", 2,)
     while (radroacher.maxHitpoints > 0){
         println("What do you want to do?")
@@ -408,7 +407,7 @@ fun level4North() {
     }
     Thread.sleep(5000)
     println(
-        "$ANSI_BLUE As you enter the third stage you see no enemies in the distance \n" +
+        "${ANSI_BLUE}As you enter the third stage you see no enemies in the distance \n" +
                 "you see a pistol on the ground, you pick it up \n" +
                 "press 1 to keep walking \n" +
                 "press 2 to look on the map"
@@ -444,9 +443,9 @@ fun levelboss(){
 
     player.levelUp()
     println(player)
-    println("$ANSI_BLUE You see the waterchip, its quite a bit bigger then expected.\n")
+    println("${ANSI_BLUE}You see the waterchip, its quite a bit bigger then expected.\n")
     Thread.sleep(1000)
-    println("$ANSI_RED as you go in to pick it up the DeathClaw jumps in at you!!!")
+    println("${ANSI_RED}as you go in to pick it up the DeathClaw jumps in at you!!!")
 
     var deathClaw = Deathclaw("DeathClaw", 100, 5, 10)
 
@@ -475,9 +474,9 @@ fun levelboss(){
 
 
 fun level2East(){
-    println("$ANSI_BLUE You go east out of the vault.")
+    println("${ANSI_BLUE}You go east out of the vault.")
     Thread.sleep(1000)
-    println("$ANSI_RED You spot a Supermutant Suicider, he is charging towards you")
+    println("${ANSI_RED}You spot a Supermutant Suicider, he is charging towards you")
     var supermutant = SuperMutantSuicider("Super mutant suicider", 10,)
     while (supermutant.maxHitpoints > 0){
         println("What do you want to do?")
@@ -506,8 +505,7 @@ fun level2East(){
     }
     player.heal(player.maxHitpoints)
     println(player)
-    ANSI_BLUE
-    println("you manage to escape from the supermutant suicider, he almost blew you up.")
+    println("${ANSI_BLUE}you manage to escape from the supermutant suicider, he almost blew you up.")
     Thread.sleep(1000)
     println("That was close, do you want to go back to the vault entrance")
     Thread.sleep(1000)
@@ -536,7 +534,7 @@ fun level2East(){
 }
 
 fun getMap(){
-    println("$ANSI_BLUE You ask the overseer where you need to go and he hands you a map")
+    println("${ANSI_BLUE}You ask the overseer where you need to go and he hands you a map")
     val map = Loot("A old map of the wasteland", LootType.OBJECT, 0.0)
     player.inventory.add(map)
     println(map)
