@@ -218,7 +218,63 @@ fun level2West(){
 
 fun level2North(){
     println("level2north")
+    println(
+        "$ANSI_BLUE You take the baseball bat from your room with you and \n " +
+                "make your way to the vault entrance$ANSI_RESET"
+    )
+    Thread.sleep(1000)
+    val pistol = Weapons("Pistol", 5, 15)
+    Thread.sleep(1000)
+    player.weapon = pistol
+    player.levelUp()
+    println(player)
+    Thread.sleep(5000)
+    println(
+        "$ANSI_BLUE As you enter the third stage you see no enemies in the distance \n" +
+                "you see a pistol on the ground, you pick it up \n"
+    )
+
+    Thread.sleep(1000)
+    choice = readLine().toString()
+    when (choice) {
+        "1" -> println("you keep walking")
+        "2" -> println("You look on the map")
+    }
+    Thread.sleep(1000)
+    println(
+        "You are scared but not ready to give up you feel more determined then ever \n" +
+                "The smell is something completely new to you. \n" +
+                "you feel more powerful then ever!"
+    )
+    Thread.sleep(3000)
+
+    println("Do you go east north or west?")
+    choice = readLine()?.toLowerCase().toString()
+    val north = "north"
+    val east = "east"
+    val west = "west"
+
+    while (choice != north || choice != east || choice != west) {
+
+        when (choice) {
+            "north" -> level4North()
+            "east" -> level3East()
+        }
+    }
+    Thread.sleep(2000)
 }
+
+
+fun level4North(){
+    println("level4north")
+}
+
+fun level3East() {
+    println("level2east")
+}
+
+
+
 
 fun level2East(){
     println("level2east")
