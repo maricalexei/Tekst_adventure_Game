@@ -3,7 +3,7 @@ import kotlin.system.exitProcess
 @OptIn(ExperimentalStdlibApi::class)
 
 fun main(args: Array<String>) {
-    level4East()
+    level1()
 }
 
 val ANSI_RESET = "\u001B[0m"

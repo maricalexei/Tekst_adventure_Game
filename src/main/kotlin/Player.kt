@@ -1,22 +1,20 @@
 import kotlin.io.println as println
 
-class Player(name: String, override var maxHitpoints: Int = 10, var level: Int = 1, var radiation: Int = 0) :
+class Player(name: String, override var maxHitpoints: Int = 10, var hitpoints: Int = maxHitpoints, var level: Int = 1, var radiation: Int = 0) :
     Characters (name, maxHitpoints){
     val inventory = ArrayList<Loot>()
     var weapon = Weapons("Fists", 1, 2)
 
-    private var currentHitpoints = maxHitpoints
-
 
     fun heal(healthAmount : Int){
-        currentHitpoints += healthAmount
-        if (currentHitpoints > maxHitpoints){
-            currentHitpoints = maxHitpoints
+        hitpoints += healthAmount
+        if (hitpoints > maxHitpoints){
+            hitpoints = maxHitpoints
         }
     }
 
     fun show() {
-        if (maxHitpoints < 0) {
+        if (hitpoints < 0) {
             println("$name is dead")
         } else {
             println("$name is alive")
@@ -25,7 +23,7 @@ class Player(name: String, override var maxHitpoints: Int = 10, var level: Int =
     }
 
     override fun takeDamage(damage: Int) {
-        val remainingHitpoints = maxHitpoints - damage
+        val remainingHitpoints = hitpoints - damage
         if (remainingHitpoints > 0){
             ANSI_RED
             println("$name took $damage points of damage and has $remainingHitpoints hitpoints left.")
@@ -42,13 +40,13 @@ class Player(name: String, override var maxHitpoints: Int = 10, var level: Int =
                 ANSI_RESET
             }
         }
-        maxHitpoints = remainingHitpoints
+        hitpoints = remainingHitpoints
     }
 
    fun levelUp(){
        level ++
-       heal(maxHitpoints)
        maxHitpoints += 2
+       heal(maxHitpoints)
        weapon.minDamage = weapon.minDamage + level
        weapon.maxDamage = weapon.maxDamage + level * 2
 
@@ -60,7 +58,7 @@ class Player(name: String, override var maxHitpoints: Int = 10, var level: Int =
         return """
             $ANSI_GREEN
             name:  $name
-            life:  $maxHitpoints
+            life:  $hitpoints out of $maxHitpoints
             level: $level
             Rads: $radiation
             weapon: ${weapon.name}
